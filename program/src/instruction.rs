@@ -16,7 +16,7 @@ pub enum Instruction {
     ///
     /// 0. `[signer]` The account of the fundstarter
     /// 1. `[writable]` The campaign state account. A pda with seeds [&[b"state"], fundstarter.key.as_ref()]
-    /// 2. `[writable]` The campaign vault account to hold all the donations. A pda with seeds [&[b"vault"], fundstarter.key.as_ref]
+    /// 2. `[]` The campaign vault account to hold all the donations. A pda with seeds [&[b"vault"], fundstarter.key.as_ref]
     InitCampaign {
         /// The campaign target
         target: u64,
@@ -39,7 +39,7 @@ pub enum Instruction {
     /// Accounts expected:
     ///
     /// 0. `[signer, writable]` The fundstarter's main account
-    /// 1. `[writable]` The fundraiser state account
+    /// 1. `[writable]` The campaign state account
     /// 2. `[writable]` The vault account
     Withdraw {},
 }
