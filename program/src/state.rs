@@ -64,8 +64,6 @@ impl Pack for Campaign {
             bump_dst
         ) = mut_array_refs![dst, 1, 32, 200, 8, 8, 1];
 
-        
-            
         is_initialized_dst[0] = self.is_initialized as u8;
         authority_dst.copy_from_slice(self.authority.as_ref());
         description_dst.copy_from_slice(self.description.as_ref());
