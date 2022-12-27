@@ -12,6 +12,8 @@ pub enum CampaignError {
     AccountMismatch,
     #[error("Account has been created already")]
     AccountAlreadyInitialized,
+    #[error("Signer is the wrong authority")]
+    WrongAuthority
 }
 
 impl From<CampaignError> for ProgramError {
