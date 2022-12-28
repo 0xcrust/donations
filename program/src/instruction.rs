@@ -14,11 +14,12 @@ pub enum Instruction {
     ///
     /// Accounts expected:
     ///
-    /// 0. `[signer]` The account of the fundstarter
+    /// 0. `[signer, writable]` The account of the fundstarter
     /// 1. `[writable]` The campaign state account. A pda with seeds [&[b"state"], fundstarter.key.as_ref()]
-    /// 2. `[]` The campaign vault account to hold all the donations. A pda with seeds [&[b"vault"], fundstarter.key.as_ref]
+    /// 2. `[]` The campaign vault account to hold all the donations. A pda with seeds [&[b"vault"], campaign_state.key.as_ref]
+    /// 3. `[]` The system program.
     InitCampaign {
-        /// The campaign target
+        /// The campaign target in lamports
         target: u64,
         /// The campaign description. A string of not more than 200 bytes
         description: [u8; 200],
@@ -30,8 +31,9 @@ pub enum Instruction {
     /// 0. `[signer, writable]` The donator's account
     /// 1. `[writable]` The state account of the campaign they're donating to
     /// 2. `[writable]` The vault account they'll be sending their donations to.
+    /// 3. `[]` The system program.
     Donate {
-        /// The donation size
+        /// The donation size in lamports
         amount: u64
     },
     /// Withdraws from a campaign when the target is met
